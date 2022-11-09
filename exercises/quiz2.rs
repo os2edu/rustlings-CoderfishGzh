@@ -6,19 +6,19 @@
 // - Modules
 // - Enums
 
-// Let's build a little machine in form of a function.
-// As input, we're going to give a list of strings and commands. These commands
-// determine what action is going to be applied to the string. It can either be:
-// - Uppercase the string
-// - Trim the string
-// - Append "bar" to the string a specified amount of times
-// The exact form of this will be:
-// - The input is going to be a Vector of a 2-length tuple,
-//   the first element is the string, the second one is the command.
-// - The output element is going to be a Vector of strings.
+//让我们以功能形式构建一台小机器。
+//作为输入，我们将提供字符串和命令列表。这些命令
+//确定将采用哪种操作应用于字符串。可以是：
+//-大写字符串
+//-修剪字符串
+//-将“ bar”附加到字符串上指定的次数
+//确切的形式将是：
+//-输入将是2个长度元组的向量，
+//第一个元素是字符串，第二个元素是命令。
+//-输出元素将是字符串的向量。
 // No hints this time!
 
-// I AM NOT DONE
+
 
 pub enum Command {
     Uppercase,
@@ -30,11 +30,24 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function signature!
-    pub fn transformer(input: ???) -> ??? {
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
         // TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
+        let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
+            let s = match command {
+                Command::Uppercase => string.to_uppercase(),
+                Command::Trim => string.trim().to_string(),
+                Command::Append(size) => {
+                    let mut s = string.clone();
+                    for _ in 0..*size as i32 {
+                        s.push_str("bar");
+                    }
+                    s.to_string()
+                }
+            };
+
+            output.push(s);
         }
         output
     }
@@ -43,7 +56,7 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we have to import to have `transformer` in scope?
-    use ???;
+    use my_module::transformer;
     use super::Command;
 
     #[test]
