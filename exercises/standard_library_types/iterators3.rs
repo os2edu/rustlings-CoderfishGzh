@@ -1,12 +1,10 @@
 // iterators3.rs
-// This is a bigger exercise than most of the others! You can do it!
-// Here is your mission, should you choose to accept it:
-// 1. Complete the divide function to get the first four tests to pass.
-// 2. Get the remaining tests to pass by completing the result_with_list and
-//    list_of_results functions.
-// Execute `rustlings hint iterators3` or use the `hint` watch subcommand for a hint.
-
-// I AM NOT DONE
+//这比其他大多数都更大！你能行的！
+//这是您的使命，如果您选择接受：
+// 1.完成分隔函数以获得前四个测试。
+// 2.通过完成result_with_list和
+// list_of_results函数。
+// Execute `rustlings hint iterators3` or use the `hint` watch subcommand for a hint
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum DivisionError {
@@ -20,24 +18,39 @@ pub struct NotDivisibleError {
     divisor: i32,
 }
 
-// Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
-// Otherwise, return a suitable error.
+//计算`a“ a”除以`a“ a”的均匀分开。
+//否则，返回合适的错误。
 pub fn divide(a: i32, b: i32) -> Result<i32, DivisionError> {
-    todo!();
+
+    if b == 0 {
+        return Err(DivisionError::DivideByZero);
+    }
+
+    let ret = a / b;
+    if ret * b != a {
+        return Err(DivisionError::NotDivisible(NotDivisibleError{
+            dividend: a,
+            divisor: b,
+        }));
+    }
+
+    Ok(a / b)
 }
 
-// Complete the function and return a value of the correct type so the test passes.
+// 完成功能并返回正确类型的值，以使测试通过。
 // Desired output: Ok([1, 11, 1426, 3])
-fn result_with_list() -> () {
+fn result_with_list() -> Result<Vec<i32>, DivisionError> {
     let numbers = vec![27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
+    let division_results = numbers.into_iter().map(|n| divide(n, 27)).collect();
+    division_results
 }
 
 // Complete the function and return a value of the correct type so the test passes.
 // Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
-fn list_of_results() -> () {
+fn list_of_results() -> Vec<Result<i32, DivisionError>> {
     let numbers = vec![27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
+    let division_results: Vec<Result<i32, DivisionError>> = numbers.into_iter().map(|n| divide(n, 27)).collect();
+    division_results
 }
 
 #[cfg(test)]

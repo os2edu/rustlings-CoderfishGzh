@@ -1,11 +1,11 @@
 // iterators5.rs
-// Let's define a simple model to track Rustlings exercise progress. Progress
-// will be modelled using a hash map. The name of the exercise is the key and
-// the progress is the value. Two counting functions were created to count the
-// number of exercises with a given progress. These counting functions use
-// imperative style for loops. Recreate this counting functionality using
-// iterators. Only the two iterator methods (count_iterator and
-// count_collection_iterator) need to be modified.
+//让我们定义一个简单的模型来跟踪Rustlings锻炼进度。进步
+//将使用哈希地图建模。练习的名称是关键，
+//进度是值。创建了两个计数功能以计算
+//具有给定进度的练习数。这些计数功能使用
+//循环的命令风格。使用
+//迭代器。仅两个迭代器方法（count_iterator和
+// count_collection_iterator）需要修改。
 // Execute `rustlings hint iterators5` or use the `hint` watch subcommand for a hint.
 //
 // Make the code compile and the tests pass.
