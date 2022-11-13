@@ -1,11 +1,11 @@
 // cow1.rs
 
-// This exercise explores the Cow, or Clone-On-Write type.
-// Cow is a clone-on-write smart pointer.
-// It can enclose and provide immutable access to borrowed data, and clone the data lazily when mutation or ownership is required.
+//本练习探索牛或牛油型。
+//牛是一个智能智能指针。
+//它可以包围并提供对借入数据的不可变访问，并在需要突变或所有权时懒惰地克隆数据。
 // The type is designed to work with general borrowed data via the Borrow trait.
 
-// I AM NOT DONE
+
 
 use std::borrow::Cow;
 
@@ -42,7 +42,7 @@ fn main() {
     let mut input = Cow::from(slice);
     match abs_all(&mut input) {
         // TODO
-        Cow::Borrowed(_) => println!("I own this slice!"),
+        Cow::Owned(_) => println!("I own this slice!"),
         _ => panic!("expected borrowed value"),
     }
 }

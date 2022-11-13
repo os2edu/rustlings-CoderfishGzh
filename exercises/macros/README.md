@@ -1,12 +1,12 @@
 # Macros
 
-Rust's macro system is very powerful, but also kind of difficult to wrap your
-head around. We're not going to teach you how to write your own fully-featured
-macros. Instead, we'll show you how to use and create them.
+Rust的宏系统非常强大，但也很难包装您
+走来走去。我们不会教您如何编写自己的功能齐全的
+宏。相反，我们将向您展示如何使用和创建它们。
 
-If you'd like to learn more about writing your own macros, the 
-[macrokata](https://github.com/tfpk/macrokata) project has a similar style
-of exercises to Rustlings, but is all about learning to write Macros.
+如果您想了解有关编写自己的宏的更多信息，
+[macrokata]（https://github.com/tfpk/macrokata）项目具有类似的样式
+练习对沙发，但都是关于学习编写宏的全部。
 
 ## Further information
 

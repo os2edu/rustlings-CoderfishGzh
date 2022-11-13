@@ -1,8 +1,8 @@
 // from_str.rs
-// This is similar to from_into.rs, but this time we'll implement `FromStr`
-// and return errors instead of falling back to a default value.
-// Additionally, upon implementing FromStr, you can use the `parse` method
-// on strings to generate an object of the implementor type.
+//这类似于from_into.rs，但是这次我们将实现``fromstr''
+//并返回错误，而不是落回默认值。
+//此外，在实现从Str的实施后，您可以使用“解析方法”
+//在字符串上生成实施者类型的对象。
 // You can read more about it at https://doc.rust-lang.org/std/str/trait.FromStr.html
 // Execute `rustlings hint from_str` or use the `hint` watch subcommand for a hint.
 
@@ -28,24 +28,49 @@ enum ParsePersonError {
     ParseInt(ParseIntError),
 }
 
-// I AM NOT DONE
 
-// Steps:
-// 1. If the length of the provided string is 0, an error should be returned
-// 2. Split the given string on the commas present in it
-// 3. Only 2 elements should be returned from the split, otherwise return an error
-// 4. Extract the first element from the split operation and use it as the name
-// 5. Extract the other element from the split operation and parse it into a `usize` as the age
-//    with something like `"4".parse::<usize>()`
-// 6. If while extracting the name and the age something goes wrong, an error should be returned
-// If everything goes well, then return a Result of a Person object
+// 脚步：
+// 1.如果提供的字符串的长度为0，则应返回错误
+// 2.将给定的字符串分开在其中存在的逗号上
+// 3.只能从分折中返回2个元素，否则返回错误
+// 4.从拆分操作中提取第一个元素并将其用作名称
+// 5.从拆分操作中提取其他元素，并将其分析为“ usize”
+//带有``4“” .parse :: <usize>（）``''
+// 6.如果提取名称和年龄出现问题时，应返回错误
+//如果一切顺利，请返回一个人对象的结果
 //
-// As an aside: `Box<dyn Error>` implements `From<&'_ str>`. This means that if you want to return a
-// string error message, you can do so via just using return `Err("my error message".into())`.
+//作为旁边的：`box <dyn error>`从<＆'_ str>`实现`。这意味着，如果您想返回
+//字符串错误消息，您可以通过使用返回`err（“我的错误消息” .into（））````''
 
 impl FromStr for Person {
     type Err = ParsePersonError;
     fn from_str(s: &str) -> Result<Person, Self::Err> {
+        if s.is_empty() {
+            return Err(ParsePersonError::Empty);
+        }
+
+        let tmp: Vec<&str> = s.split(',').collect();
+
+        if tmp.len() != 2 {
+            return Err(ParsePersonError::BadLen);
+        }
+
+        if tmp[0] == "" {
+            return Err(ParsePersonError::NoName);
+        }
+
+        let name = tmp[0];
+        let age = match tmp[1].parse::<usize>() {
+            Ok(a) => a,
+            Err(e) => return Err(ParsePersonError::ParseInt(e)),
+        };
+
+        Ok(Person {
+            name: name.to_string(),
+            age,
+        })
+
+
     }
 }
 
